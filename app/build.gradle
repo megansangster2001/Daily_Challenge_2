@@ -36,5 +36,9 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'org.example.TicTacToe'
+    mainClass = 'org.example.Main'
+}
+
+tasks.named('run') {
+    standardInput = System.in
 }

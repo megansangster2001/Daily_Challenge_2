@@ -399,5 +399,14 @@ class TicTacToeTest {
 
         assertEquals("X", game.getPosition(1));
     }
+
+    @Test
+    void currentPlayerDoesNotChangeWhenMoveIsInvalid() {
+        TicTacToe game = new TicTacToe();
+
+        game.makeMove(10);
+
+        assertEquals("X", game.getCurrentPlayer());
+    }
 }
 
