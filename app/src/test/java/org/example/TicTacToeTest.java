@@ -380,5 +380,24 @@ class TicTacToeTest {
 
         assertTrue(game.isDraw());
     }
+
+    @Test
+    void noMovesCanBeMadeAfterADraw() {
+        TicTacToe game = new TicTacToe();
+
+        game.makeMove(1); // X
+        game.makeMove(2); // O
+        game.makeMove(3); // X
+        game.makeMove(5); // O
+        game.makeMove(4); // X
+        game.makeMove(6); // O
+        game.makeMove(8); // X
+        game.makeMove(7); // O
+        game.makeMove(9); // X
+
+        game.makeMove(1); // O tries to move after draw
+
+        assertEquals("X", game.getPosition(1));
+    }
 }
 
