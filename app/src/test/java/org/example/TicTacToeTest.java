@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class TicTacToeTest {
 
@@ -81,9 +82,9 @@ class TicTacToeTest {
         game.makeMove(1);
         game.makeMove(2);
 
-        assertEquals("X",game.getPosition(1));
+        assertEquals("X", game.getPosition(1));
 
-        assertEquals("O",game.getPosition(2));
+        assertEquals("O", game.getPosition(2));
     }
 
 
@@ -92,11 +93,11 @@ class TicTacToeTest {
     @Test
     void PlayerXCanWithTopRow() {
         TicTacToe game = new TicTacToe();
-            game.makeMove(1); //X
-            game.makeMove(7); //O
-            game.makeMove(2); //X
-            game.makeMove(5); //O
-            game.makeMove(3); //X
+        game.makeMove(1); //X
+        game.makeMove(7); //O
+        game.makeMove(2); //X
+        game.makeMove(5); //O
+        game.makeMove(3); //X
 
         assertTrue(game.hasWinner());
     }
@@ -212,5 +213,155 @@ class TicTacToeTest {
         assertEquals("X", game.getWinner());
 
     }
+    //Checking Player O can win with top row
 
+    @Test
+    void PlayerOCanWithTopRow() {
+        TicTacToe game = new TicTacToe();
+        game.makeMove(5); //X
+        game.makeMove(1); //O
+        game.makeMove(4); //X
+        game.makeMove(2); //O
+        game.makeMove(9); //X
+        game.makeMove(3); //O
+
+        assertTrue(game.hasWinner());
+    }
+
+    //Checking Player O can win with middle row
+
+    @Test
+    void PlayerOCanWithMiddleRow() {
+        TicTacToe game = new TicTacToe();
+        game.makeMove(1); //X
+        game.makeMove(4); //O
+        game.makeMove(2); //X
+        game.makeMove(5); //O
+        game.makeMove(9); //X
+        game.makeMove(6); //O
+
+        assertTrue(game.hasWinner());
+    }
+
+    //Checking Player O can win with bottom row
+
+    @Test
+    void PlayerOCanWithBottomRow() {
+        TicTacToe game = new TicTacToe();
+        game.makeMove(1); //X
+        game.makeMove(7); //O
+        game.makeMove(2); //X
+        game.makeMove(8); //O
+        game.makeMove(4); //X
+        game.makeMove(9); //O
+
+        assertTrue(game.hasWinner());
+    }
+
+    //Checking Player O can win with right column
+
+    @Test
+    void PlayerOCanWithRightColumn() {
+        TicTacToe game = new TicTacToe();
+        game.makeMove(3); //X
+        game.makeMove(1); //O
+        game.makeMove(2); //X
+        game.makeMove(4); //O
+        game.makeMove(6); //X
+        game.makeMove(7); //O
+
+        assertTrue(game.hasWinner());
+    }
+
+    //Checking Player O can win with middle column
+
+    @Test
+    void PlayerOCanWithMiddleColumn() {
+        TicTacToe game = new TicTacToe();
+        game.makeMove(1); //X
+        game.makeMove(2); //O
+        game.makeMove(6); //X
+        game.makeMove(5); //O
+        game.makeMove(4); //X
+        game.makeMove(8); //O
+
+        assertTrue(game.hasWinner());
+    }
+
+    //Checking Player O can win with left column
+
+    @Test
+    void PlayerOCanWithLeftColumn() {
+        TicTacToe game = new TicTacToe();
+        game.makeMove(1); //X
+        game.makeMove(3); //O
+        game.makeMove(2); //X
+        game.makeMove(6); //O
+        game.makeMove(4); //X
+        game.makeMove(9); //O
+
+        assertTrue(game.hasWinner());
+    }
+    //Checking Player 0 can win with diagonal
+
+    @Test
+    void Player0CanWithDiagonal() {
+        TicTacToe game = new TicTacToe();
+        game.makeMove(7); //X
+        game.makeMove(1); //O
+        game.makeMove(2); //X
+        game.makeMove(5); //O
+        game.makeMove(4); //X
+        game.makeMove(9); //O
+
+        assertTrue(game.hasWinner());
+    }
+
+    //Checking Player X can win with reverse diagonal
+
+    @Test
+    void PlayerOCanWithReverseDiagonal() {
+        TicTacToe game = new TicTacToe();
+        game.makeMove(1); //X
+        game.makeMove(3); //O
+        game.makeMove(2); //X
+        game.makeMove(5); //O
+        game.makeMove(4); //X
+        game.makeMove(7); //O
+
+        assertTrue(game.hasWinner());
+    }
+
+    //checking O is the winner
+
+    @Test
+    void PlayerOIsTheWinner() {
+        TicTacToe game = new TicTacToe();
+
+        game.makeMove(5); //X
+        game.makeMove(1); //O
+        game.makeMove(4); //X
+        game.makeMove(2); //O
+        game.makeMove(9); //X
+        game.makeMove(3); //O
+
+        assertEquals("O", game.getWinner());
+
+    }
+    @Test
+    void GameOverAfterThereIsAWinner() {
+        TicTacToe game = new TicTacToe();
+
+        game.makeMove(1); //X
+        game.makeMove(7); //O
+        game.makeMove(2); //X
+        game.makeMove(5); //O
+        game.makeMove(3); //X wins
+
+        game.makeMove(6); // O tries to make move after X wins
+
+        assertNull(game.getPosition(6));
+
+    }
 }
+

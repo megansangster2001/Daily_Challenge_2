@@ -11,6 +11,10 @@ class TicTacToe {
         return currentPlayer;
     }
     public void makeMove(int position) {
+
+        if (winner != null) {
+            return;
+        }
         if (position < 1 || position > 9) {
             return;
         }
