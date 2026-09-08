@@ -3,27 +3,29 @@ package org.example;
 class TicTacToe {
 
     private String currentPlayer = "X";
-    private String [] board = new String[9];
+    private String[] board = new String[9];
     private String winner;
 
 
     public String getCurrentPlayer() {
         return currentPlayer;
     }
+
     public void makeMove(int position) {
 
         if (winner != null) {
             return;
         }
+
         if (!isValidPosition(position)) {
             return;
         }
-        if (board[position - 1] == null) {
+
+        if (isPositionAvailable(position)) {
             String player = currentPlayer;
             board[position - 1] = player;
 
-
-            if(hasWinner()) {
+            if (hasWinner()) {
                 winner = player;
             }
 
@@ -35,9 +37,10 @@ class TicTacToe {
         }
     }
 
-    public String getPosition(int position){
-            return board[position - 1];
+    public String getPosition(int position) {
+        return board[position - 1];
     }
+
     public boolean hasWinner() {
         return board[0] != null &&
                 board[0].equals(board[1]) &&
@@ -75,9 +78,11 @@ class TicTacToe {
 
 
     }
+
     public String getWinner() {
         return winner;
     }
+
     public boolean isDraw() {
         for (String position : board) {
             if (position == null) {
@@ -86,7 +91,12 @@ class TicTacToe {
         }
         return !hasWinner();
     }
+
     private boolean isValidPosition(int position) {
         return position >= 1 && position <= 9;
+    }
+
+    private boolean isPositionAvailable(int position) {
+        return board[position - 1] == null;
     }
 }
