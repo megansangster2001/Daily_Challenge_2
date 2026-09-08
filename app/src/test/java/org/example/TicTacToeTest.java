@@ -363,5 +363,22 @@ class TicTacToeTest {
         assertNull(game.getPosition(6));
 
     }
+
+    @Test
+    void gameIsADrawWhenAllPositionsAreFilledWithoutAWinner() {
+        TicTacToe game = new TicTacToe();
+
+        game.makeMove(1); // X
+        game.makeMove(2); // O
+        game.makeMove(3); // X
+        game.makeMove(5); // O
+        game.makeMove(4); // X
+        game.makeMove(6); // O
+        game.makeMove(8); // X
+        game.makeMove(7); // O
+        game.makeMove(9); // X
+
+        assertTrue(game.isDraw());
+    }
 }
 

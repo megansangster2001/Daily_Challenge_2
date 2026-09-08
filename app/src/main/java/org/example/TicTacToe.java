@@ -78,4 +78,12 @@ class TicTacToe {
     public String getWinner() {
         return winner;
     }
+    public boolean isDraw() {
+        for (String position : board) {
+            if (position == null) {
+                return false;
+            }
+        }
+        return !hasWinner();
+    }
 }
