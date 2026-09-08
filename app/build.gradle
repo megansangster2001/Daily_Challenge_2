@@ -16,20 +16,16 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
-    // This dependency is used by the application.
-    implementation libs.guava
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-testing {
-    suites {
-        // Configure the built-in test suite
-        test {
-            // Use JUnit4 test framework
-            useJUnit('4.13.2')
-        }
-    }
+test {
+    useJUnitPlatform()
 }
+
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
@@ -40,5 +36,5 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'org.example.App'
+    mainClass = 'org.example.TicTacToe'
 }
