@@ -28,12 +28,7 @@ class TicTacToe {
             if (hasWinner()) {
                 winner = player;
             }
-
-            if (currentPlayer.equals("X")) {
-                currentPlayer = "O";
-            } else {
-                currentPlayer = "X";
-            }
+            switchPlayer();
         }
     }
 
@@ -42,43 +37,16 @@ class TicTacToe {
     }
 
     public boolean hasWinner() {
-        return board[0] != null &&
-                board[0].equals(board[1]) &&
-                board[1].equals(board[2])
-                ||
-                (board[3] != null &&
-                        board[3].equals(board[4]) &&
-                        board[4].equals(board[5]))
+        for (int[] combination : winningCombinations) {
+            if (board[combination[0]] != null &&
+                    board[combination[0]].equals(board[combination[1]]) &&
+                    board[combination[1]].equals(board[combination[2]])) {
+                return true;
+            }
+        }
 
-                ||
-                (board[6] != null &&
-                        board[6].equals(board[7]) &&
-                        board[7].equals(board[8]))
-                ||
-                (board[0] != null &&
-                        board[0].equals(board[3]) &&
-                        board[3].equals(board[6]))
-                ||
-                (board[1] != null &&
-                        board[1].equals(board[4]) &&
-                        board[4].equals(board[7]))
-
-                ||
-                (board[2] != null &&
-                        board[2].equals(board[5]) &&
-                        board[5].equals(board[8]))
-                ||
-                (board[0] != null &&
-                        board[0].equals(board[4]) &&
-                        board[4].equals(board[8]))
-                ||
-                (board[2] != null &&
-                        board[2].equals(board[4]) &&
-                        board[4].equals(board[6]));
-
-
+        return false;
     }
-
     public String getWinner() {
         return winner;
     }
@@ -99,4 +67,22 @@ class TicTacToe {
     private boolean isPositionAvailable(int position) {
         return board[position - 1] == null;
     }
+    private void switchPlayer() {
+        if (currentPlayer.equals("X")) {
+            currentPlayer = "O";
+        } else {
+            currentPlayer = "X";
+        }
+    }
+    private final int[][] winningCombinations = {
+            {0, 1, 2},
+            {3, 4, 5},
+            {6, 7, 8},
+            {0, 3, 6},
+            {1, 4, 7},
+            {2, 5, 8},
+            {0, 4, 8},
+            {2, 4, 6}
+    };
+
 }
