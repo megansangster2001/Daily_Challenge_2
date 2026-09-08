@@ -408,5 +408,53 @@ class TicTacToeTest {
 
         assertEquals("X", game.getCurrentPlayer());
     }
+    @Test
+    void drawGameHasNoWinner() {
+
+        TicTacToe game = new TicTacToe();
+
+        game.makeMove(1); // X
+        game.makeMove(2); // O
+        game.makeMove(3); // X
+        game.makeMove(5); // O
+        game.makeMove(4); // X
+        game.makeMove(6); // O
+        game.makeMove(8); // X
+        game.makeMove(7); // O
+        game.makeMove(9); // X
+
+        assertTrue(game.isDraw());
+        assertNull(game.getWinner());
+    }
+    @Test
+    void currentPlayerDoesNotChangeAfterMove() {
+        TicTacToe game = new TicTacToe();
+
+        game.makeMove(1);
+        game.makeMove(1);
+
+        assertEquals("O", game.getCurrentPlayer());
+    }
+    @Test
+    void currentPlayerDoesNotChangeAfterInvalidMove() {
+        TicTacToe game = new TicTacToe();
+
+        game.makeMove(10);
+
+        assertEquals("X", game.getCurrentPlayer());
+    }
+    @Test
+    void currentPlayerDoesNotChangeAfterWinning() {
+        TicTacToe game = new TicTacToe();
+
+        game.makeMove(1); // X
+        game.makeMove(4); // O
+        game.makeMove(2); // X
+        game.makeMove(5); // O
+        game.makeMove(3); // X wins
+
+        assertEquals("O", game.getCurrentPlayer());
+
+    }
 }
 
