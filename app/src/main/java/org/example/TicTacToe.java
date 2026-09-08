@@ -15,7 +15,7 @@ class TicTacToe {
         if (winner != null) {
             return;
         }
-        if (position < 1 || position > 9) {
+        if (!isValidPosition(position)) {
             return;
         }
         if (board[position - 1] == null) {
@@ -85,5 +85,8 @@ class TicTacToe {
             }
         }
         return !hasWinner();
+    }
+    private boolean isValidPosition(int position) {
+        return position >= 1 && position <= 9;
     }
 }
